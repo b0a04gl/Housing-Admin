@@ -16,17 +16,25 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
+
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "ios": {
+     "bundleIdentifier": "com.infotix.housingRenter",
+     "buildNumber": "1.0.0",
+     "supportsTablet": true
+   },
+   "android": {
+     "package": "com.infotix.housingRenter",
+     "versionCode": 1,
+	"config": {
+	      "googleMaps": {
+		"apiKey": "AIzaSyA-qISD183RIy0ll219vtCcV45m9ckQSww"
+	      }
+	    }
+   }
   }
 }
+
+
