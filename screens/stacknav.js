@@ -4,6 +4,11 @@ import {View} from 'react-native';
 
 import HomeScreen from './HomeScreen';
 import EditHome from './EditHome';
+import ViewUsers from './ViewUsers';
+import UserCardDetails from './UserCardDetails';
+import CardDetails from './CardDetails';
+import BlackListedProps from './BlacklistedProps';
+import CardListScreen from './CardListScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { AntDesign } from '@expo/vector-icons';
@@ -79,6 +84,33 @@ const MainStackNavigator = ({navigation}) => {
           }}
         />
 
+
+<Stack.Screen
+          name="CardListScreen"
+          component={CardListScreen}
+          options={({route}) => ({
+            title: route.params.title,
+            headerBackTitleVisible: false,
+          headerTitleAlign: 'center',
+         
+          })}
+        />
+
+
+<Stack.Screen
+          name="CardDetails"
+          component={CardDetails}
+          options={({route}) => ({
+            // title: route.params.title,
+            headerBackTitleVisible: false,
+            headerTitle: false,
+            headerTransparent: true,
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+           
+          })}
+        />
+
       </Stack.Navigator>
   );
 }
@@ -86,7 +118,38 @@ const MainStackNavigator = ({navigation}) => {
 const WishlistStackNavigator = ({navigation}) => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Wishlist" component={HomeScreen}
+      <Stack.Screen name="ViewUsers" component={ViewUsers}
+      options={{
+
+               headerTitleAlign: 'center',
+               headerLeft: () => (
+                 <View style={{marginLeft: 10}}>
+                   <Icon.Button
+                     name="ios-menu"
+                     size={25}
+                     color='#fff'
+                     backgroundColor='#4263ec'
+                     onPress={() => navigation.openDrawer()}
+                   />
+                 </View>
+               ),
+               headerRight: () => (
+                 <View style={{flexDirection: 'row', marginRight: 10}}>
+                   <Icon.Button
+                     name="ios-search"
+                     size={25}
+                     color='#fff'
+                     backgroundColor='#4263ec'
+
+                   />
+
+                 </View>
+               ),
+           }}
+
+      />
+
+<Stack.Screen name="UserCardDetails" component={UserCardDetails}
       options={{
 
                headerTitleAlign: 'center',
@@ -119,17 +182,63 @@ const WishlistStackNavigator = ({navigation}) => {
 
 
 
+<Stack.Screen
+          name="CardDetails"
+          component={CardDetails}
+          options={({route}) => ({
+            // title: route.params.title,
+            headerBackTitleVisible: false,
+            headerTitle: false,
+            headerTransparent: true,
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+           
+          })}
+        />
+
 
     </Stack.Navigator>
   );
 }
 
-const MyPropertyStackNavigator = ({navigation}) => {
+const BlackListedPropsStackNavigator = ({navigation}) => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
 
+<Stack.Screen
+          name="BlackListedProps"
+          component={BlackListedProps}
+          options={{
 
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+              <View style={{marginLeft: 10}}>
+                <Icon.Button
+                  name="ios-menu"
+                  size={25}
+                  color='#fff'
+                  backgroundColor='#4263ec'
+                  onPress={() => navigation.openDrawer()}
+                />
+              </View>
+            ),
+           
+        }}
+        />
 
+<Stack.Screen
+          name="CardDetails"
+          component={CardDetails}
+          options={({route}) => ({
+            // title: route.params.title,
+            headerBackTitleVisible: false,
+            headerTitle: false,
+            headerTransparent: true,
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+           
+          })}
+        />
     </Stack.Navigator>
   );
 }
@@ -177,4 +286,4 @@ const ProfileStackNavigator = ({navigation}) => {
 }
 
 
-export { MainStackNavigator, WishlistStackNavigator,ProfileStackNavigator };
+export { MainStackNavigator, WishlistStackNavigator,BlackListedPropsStackNavigator,ProfileStackNavigator };

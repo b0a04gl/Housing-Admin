@@ -2,7 +2,7 @@ import React from "react";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from '@react-navigation/native';
-import { ProfileStackNavigator ,WishlistStackNavigator} from "./stacknav";
+import { ProfileStackNavigator ,WishlistStackNavigator,BlackListedPropsStackNavigator} from "./stacknav";
 import BottomTabNavigator from "./tabnav";
 
 
@@ -15,8 +15,8 @@ const DrawerNavigator = () => {
       <Drawer.Screen name="Home" component={BottomTabNavigator} />
 
       <Drawer.Screen name="Profile" component={ProfileStackNavigator} />
-      <Drawer.Screen name="Wishlist" component={WishlistStackNavigator} />
-
+      <Drawer.Screen name="ViewUsers" component={WishlistStackNavigator} />
+      <Drawer.Screen name="BlackListedProps" component={BlackListedPropsStackNavigator} />
     </Drawer.Navigator>
 
   );

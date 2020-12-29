@@ -110,7 +110,7 @@ const categories2 = [
         index : 3,
         isSelected : false,
         cat : 2,
-      }
+    }
 ];
 
   class Category extends React.Component
@@ -306,6 +306,9 @@ export default class EditHome extends React.Component {
             alertflag: true,
         });
 
+       
+
+        
         if (this.state.flag) {
             if (this.state.deleteImageNames.length > 0) {
                 this.state.deleteImageNames.map(imageName =>
@@ -332,6 +335,10 @@ export default class EditHome extends React.Component {
             }).catch((error) => {
                 console.log(error);
             });
+
+            
+
+          
 
             this.props.navigation.navigate('HomeScreen',{
 
@@ -365,7 +372,7 @@ export default class EditHome extends React.Component {
                 <View style={styles.imageDeck}>
                     <SliderBox
                         images={this.state.imagesDeck}
-                        sliderBoxHeight={175}
+                        sliderBoxHeight={195}
                         
                         circleLoop={true}
                         resizeMode={'contain'}
@@ -377,41 +384,8 @@ export default class EditHome extends React.Component {
                         } />
                 </View>
 
-                <View style={styles.categoryContainer}>
 
-                        {
-                            categories1.map((am,index) => (
-                                <Category 
-                                name={am.name}
-                                icon={am.icon}
-                                key={am.index}
-                                index={am.index}
-                                color={am.color}
-                                cat = {am.cat}
-                                />
-                            ))
-                        }
-
-                    </View>
-
-
-                    <View style={[styles.categoryContainer, {marginTop: 10}]}>
-
-                    {
-                        categories2.map((am,index) => (
-                            <Category 
-                            name={am.name}
-                            icon={am.icon}
-                            key={am.index}
-                            index={am.index}
-                            color={am.color}
-                            />
-                        ))
-                    }
-
-                    </View>
-
-              <View >
+              <View style={{padding:30}}>
              <FormButton
                buttonTitle="DONE"
                onPress={this.SaveToDatabase}
@@ -447,7 +421,7 @@ const styles = StyleSheet.create({
 
     imageDeck: {
         elevation: 5,
-        height: 175,
+        height: 195,
         borderColor: 'black',
         borderWidth: 1,
     },
@@ -579,5 +553,13 @@ const styles = StyleSheet.create({
         marginTop: 5,
         color: '#de4f35',
       },
+      sectionTitle: {
+        fontSize: 20,
+        paddingBottom:15,
+        fontWeight: 'bold',
+        color:'#000',
+        marginTop:30,
+        marginLeft:20,
+      }    
 
 });

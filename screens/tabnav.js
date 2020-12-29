@@ -17,15 +17,7 @@ const BottomTabNavigator = () => {
     }}
        />
 
-      <Tab.Screen name="Wishlist" component={WishlistStackNavigator}
-      options={{
-                tabBarLabel: 'Wishlist',
-                tabBarIcon: ({ color, size }) => (
-                  <MaterialCommunityIcons name="heart" color={color} size={size} />
-                ),
-              }}
-
-      />
+    
       <Tab.Screen name="Profile" component={ProfileStackNavigator}
       options={{
                 tabBarLabel: 'Profile',

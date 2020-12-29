@@ -98,6 +98,57 @@ const ImageUi = ({source}) => {
   );
 }
 
+class Category extends React.Component
+{
+
+  constructor(props)
+  {
+
+      super(props);
+
+      this.state = {
+        name : this.props.name,
+        icon : this.props.icon,
+        index : this.props.index,
+        color : '#fdeae7',
+        isSelected : false,
+        cat : this.props.cat,
+      }
+
+
+
+
+  }
+
+
+
+
+    render()
+    {
+
+
+     
+    
+     
+      return (
+          <TouchableOpacity
+          style={[styles.categoryBtn,]}
+          onPress={() =>
+            this.props.navigation.navigate('CardListScreen', {title: this.state.name})
+          }>
+          <View style={[styles.categoryIcon,{backgroundColor: this.state.color}]}>
+          <MaterialCommunityIcons
+            name={this.state.icon}
+            size={35}
+            color="#FF6347"
+          />
+          </View>
+          <Text style={styles.categoryBtnTxt}>{this.state.name}</Text>
+        </TouchableOpacity>
+      );
+    }
+}
+
 const HomeScreen = ({navigation}) => {
 
   const [imagesDeck,setImagesDeck] = React.useState([]);
