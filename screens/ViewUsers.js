@@ -4,7 +4,8 @@ import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
 import Firebase from '../firebaseConfig';
 import UserCard from '../components/UserCard';
 import FormButton from '../components/FormButton';
-export default class Wishlist extends React.Component {
+
+export default class ViewUsers extends React.Component {
   state = {
     allusers: [],
     isLoading: false
@@ -31,7 +32,7 @@ export default class Wishlist extends React.Component {
     var users = [];
 
     Firebase.database().ref('/users/renters').on('value', (data) => {
-     
+
         if (data.val()) {
             var keys = Object.keys(data.val());
             var temp = data.val();
@@ -42,8 +43,8 @@ export default class Wishlist extends React.Component {
             }
 
         }
-        
-    
+
+
 });
 
 
@@ -63,7 +64,7 @@ else {
   render() {
 
 
-   
+
 
 
     console.log("state :: "+this.state.allusers);
@@ -80,14 +81,14 @@ else {
             renderItem={this.renderRow}
             refreshing={this.state.isLoading}
             onRefresh={this.getData}
-            keyExtractor={(item) => item.uid}
+            keyExtractor={item => item.uid.toString()}
           />
         </View>
       )
     }
     else {
 
-      
+
 
       return (
              <View style={{

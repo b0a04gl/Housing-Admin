@@ -21,17 +21,18 @@ import * as ImagePicker from 'expo-image-picker';
 import Card from '../components/Card';
 import Toast from 'react-native-simple-toast';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import Profile from './Profile';
 
 
-const component1 = () => <Text>Properties</Text>
-const component2 = () => <Text>Wishlist</Text>
-const component3 = () => <Text>Unverified Props</Text>
+const component1 = () => <Text>Wishlist</Text>
+const component2 = () => <Text>Profile</Text>
 
 
 
 
 
-class UserCardDetails extends Component {
+
+class UserCardDetailsRentee extends Component {
 
 
 
@@ -216,11 +217,11 @@ this.setState({unverifiedProps:x3,isLoading3:false});
 
 
   render () {
-    const buttons = [{ element: component1 }, { element: component2 },{element:component3}]
+    const buttons = [{ element: component1 }, { element: component2 }]
 
     // console.log(this.state.user.uid);
     const navigation = this.props.navigation;
-
+const {user} = this.props.route.params;
 
 
     return (
@@ -243,44 +244,14 @@ this.setState({unverifiedProps:x3,isLoading3:false});
         buttons={buttons}
         containerStyle={{height: 40}} />
 
-        {this.state.propType == 0 ?
+        {this.state.propType == 1 ?
 
 
-               this.state.myProperties!=null && this.state.myProperties.length!=0 ?
-
-               <View style={{
-                flex: 1,
-                width: '90%',
-                alignSelf: 'center'
-            }}>
-            <FlatList
-                data={this.state.myProperties}
-                renderItem={this.renderRow2}
-                refreshing={this.state.isLoading1}
-                onRefresh={this.getData}
-                keyExtractor={item => item.propID.toString()}
-            />
-            </View>
-
-            :
-
-            <View style={{
-                backgroundColor: '#f9fafd',
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: 20
-              }}>
-                <Text style={{
-                  fontSize: 20,
-                  color: '#333333'
-                }}>No properties has been posted by user</Text>
-              </View>
-
+              <Profile user = {user} />
 
           :
 
-                this.state.propType==1 ?
+                this.state.propType==0 ?
 
                 this.state.wishlist!=null && this.state.wishlist.length!=0 ?
 
@@ -429,4 +400,4 @@ const styles = StyleSheet.create({
  },
 })
 
-export default UserCardDetails;
+export default UserCardDetailsRentee;

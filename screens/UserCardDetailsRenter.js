@@ -14,6 +14,7 @@ import Constants from 'expo-constants';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 import FormButton from '../components/FormButton';
 import Firebase from '../firebaseConfig';
+import Profile from './Profile';
 // import { ImagePicker, Permissions } from 'expo';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
@@ -24,14 +25,14 @@ import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 
 const component1 = () => <Text>Properties</Text>
-const component2 = () => <Text>Wishlist</Text>
-const component3 = () => <Text>Unverified Props</Text>
+const component2 = () => <Text>Profile</Text>
 
 
 
 
 
-class UserCardDetails extends Component {
+
+class UserCardDetailsRenter extends Component {
 
 
 
@@ -159,19 +160,6 @@ componentDidMount() {
 
     // console.log(user);
 
-    var temp = user.wishlist;
-    if(temp!=null && Object.keys(temp).length!=0)
-    {
-        var keys = Object.keys(temp);
-        var x = [];
-        for (var index = 0; index < keys.length; index++) {
-        var key = keys[index];
-
-        x.push(temp[key]);
-        }
-
-        this.setState({wishlist:x});
-    }
 
 
     let dbRef = Firebase.database().ref('/properties/'+user.uid);
@@ -186,21 +174,16 @@ componentDidMount() {
             var x3 = [];
             for (var index = 0; index < keys2.length; index++) {
               var key = keys2[index];
-              if(temp2[key].isVerified)
-              {
+
                 x2.push(temp2[key]);
-              }
-              else if(temp2[key].isVerified==false)
-              {
-                x3.push(temp2[key]);
-              }
+
               // x[index]['propID'] = key;
               //console.log(x[index]);
             }
 
 
 this.setState({myProperties:x2,isLoading1:false});
-this.setState({unverifiedProps:x3,isLoading3:false});
+
           }
           else {
 
@@ -216,12 +199,12 @@ this.setState({unverifiedProps:x3,isLoading3:false});
 
 
   render () {
-    const buttons = [{ element: component1 }, { element: component2 },{element:component3}]
+    const buttons = [{ element: component1 }, { element: component2 }]
 
     // console.log(this.state.user.uid);
     const navigation = this.props.navigation;
 
-
+const {user} = this.props.route.params;
 
     return (
 
@@ -282,75 +265,15 @@ this.setState({unverifiedProps:x3,isLoading3:false});
 
                 this.state.propType==1 ?
 
-                this.state.wishlist!=null && this.state.wishlist.length!=0 ?
-
-                <View style={{
-                  flex: 1,
-                  width: '90%',
-                  alignSelf: 'center'
-                }}>
-                <FlatList
-                  data={this.state.wishlist}
-                  renderItem={this.renderRow2}
-                  refreshing={this.state.isLoading2}
-                  onRefresh={this.getData}
-                  keyExtractor={item => item.propID.toString()}
-                />
-              </View>
-
-      :
-
-      <View style={{
-          backgroundColor: '#f9fafd',
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 20
-        }}>
-          <Text style={{
-            fontSize: 20,
-            color: '#333333'
-          }}>No properties has been wished by user</Text>
-        </View>
 
 
+                  <Profile user = {user} />
 
 
                 :
 
 
-                this.state.unverifiedProps!=null && this.state.unverifiedProps.length!=0 ?
-
-                <View style={{
-                  flex: 1,
-                  width: '90%',
-                  alignSelf: 'center'
-                }}>
-                <FlatList
-                  data={this.state.unverifiedProps}
-                  renderItem={this.renderRow3}
-                  refreshing={this.state.isLoading3}
-                  onRefresh={this.getData}
-                  keyExtractor={item => item.propID.toString()}
-                />
-              </View>
-
-      :
-
-      <View style={{
-          backgroundColor: '#f9fafd',
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 20
-        }}>
-          <Text style={{
-            fontSize: 20,
-            color: '#333333'
-          }}>No properties has been wished by user</Text>
-        </View>
-
-
+              null
 
 
 
@@ -429,4 +352,4 @@ const styles = StyleSheet.create({
  },
 })
 
-export default UserCardDetails;
+export default UserCardDetailsRenter;

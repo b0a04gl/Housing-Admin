@@ -31,7 +31,7 @@ const LoginScreen = ({navigation}) => {
         source={require('../assets/house1.jpg')}
         style={styles.logo}
       />
-      <Text style={styles.text}>Housing App - Renter</Text>
+      <Text style={styles.text}>Housing - Admin</Text>
 
       <FormInput
         labelValue={email}

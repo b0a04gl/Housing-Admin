@@ -8,7 +8,7 @@ import { ButtonGroup } from 'react-native-elements';
 const component1 = () => <Text>Verified Props</Text>
 const component2 = () => <Text>Unverified Props</Text>
 
-export default class Wishlist extends React.Component {
+export default class CardListScreen extends React.Component {
   state = {
     myProperties: [],
     unverifiedProps: [],
@@ -25,7 +25,7 @@ export default class Wishlist extends React.Component {
 constructor(props)
 {
 
-    super(props);    
+    super(props);
     this.updateIndex = this.updateIndex.bind(this)
 }
 
@@ -34,13 +34,13 @@ constructor(props)
     var user = null;
 
     Firebase.database().ref('/users/renters/'+item.uid).on('value', (data) => {
-     
+
         if (data.val()) {
            user = data.val();
 
         }
-        
-    
+
+
 });
 
 
@@ -105,10 +105,10 @@ this.setState({propSubtype:propSubtype , isLoading:true});
             var x = [];
             for (var index = 0; index < keys.length; index++) {
               var key = keys[index];
-               temp[key]['uid'] = useruids[i]; 
-            if(temp[key].isVerified == true)  
+               temp[key]['uid'] = useruids[i];
+            if(temp[key].isVerified == true)
                   required1.push(temp[key]);
-            else if(temp[key].isVerified == false)  
+            else if(temp[key].isVerified == false)
                   required2.push(temp[key]);
             };
           }
@@ -128,14 +128,14 @@ this.setState({propSubtype:propSubtype , isLoading:true});
 
   }
 
-  render() 
+  render()
   {
 
     const buttons = [{ element: component1 }, { element: component2 }];
 
 
         return(
-             
+
             <ScrollView keyboardShouldPersistTaps="handled">
                 <ButtonGroup
                 onPress={this.updateIndex}
@@ -143,12 +143,12 @@ this.setState({propSubtype:propSubtype , isLoading:true});
                 }
                 buttons={buttons}
                 containerStyle={{height: 40}} />
-            
+
                 {this.state.propType == 0 ?
-            
-            
-                       this.state.verifiedProps!=null && this.state.verifiedProps.length!=0 ? 
-            
+
+
+                       this.state.verifiedProps!=null && this.state.verifiedProps.length!=0 ?
+
                        <View style={{
                         flex: 1,
                         width: '90%',
@@ -159,12 +159,12 @@ this.setState({propSubtype:propSubtype , isLoading:true});
                         renderItem={this.renderRow}
                         refreshing={this.state.isLoading1}
                         onRefresh={this.getData}
-                        keyExtractor={(item) => item.propID}
+                        keyExtractor={item => item.propID.toString()}
                     />
                     </View>
-            
+
                     :
-            
+
                     <View style={{
                         backgroundColor: '#f9fafd',
                         flex: 1,
@@ -177,14 +177,14 @@ this.setState({propSubtype:propSubtype , isLoading:true});
                           color: '#333333'
                         }}>No properties has been posted by user</Text>
                       </View>
-            
-            
+
+
                   :
-            
-                        
-            
+
+
+
                         this.state.unverifiedProps!=null && this.state.unverifiedProps.length!=0 ?
-            
+
                         <View style={{
                           flex: 1,
                           width: '90%',
@@ -195,12 +195,12 @@ this.setState({propSubtype:propSubtype , isLoading:true});
                           renderItem={this.renderRow}
                           refreshing={this.state.isLoading2}
                           onRefresh={this.getData}
-                          keyExtractor={(item) => item.propID}
+                          keyExtractor={item => item.propID.toString()}
                         />
                       </View>
-              
+
               :
-              
+
               <View style={{
                   backgroundColor: '#f9fafd',
                   flex: 1,
@@ -213,21 +213,21 @@ this.setState({propSubtype:propSubtype , isLoading:true});
                     color: '#333333'
                   }}>No properties has been wished by user</Text>
                 </View>
-              
-              
-            
-            
-                      
-              
-            
-            
-                 
+
+
+
+
+
+
+
+
+
                    }
-            
-            
+
+
                    </ScrollView>
         )
 
-   
+
   }
 }

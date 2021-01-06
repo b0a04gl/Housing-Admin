@@ -1,13 +1,20 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Firebase from '../firebaseConfig';
 
 const UserCard = ({itemData, onPress}) => {
 
+const [isBlacklisted,setIsBlacklisted] = React.useState(itemData.isBlacklisted);
 
-var locations = itemData.locations;
 
-var freq = itemData.frequency!=null ? itemData.frequency : '';
+
+const handle = (flag) => {
+  setIsBlacklisted(flag);
+  Firebase.database().ref('/users/renters/'+itemData.uid+"/isBlacklisted").set(flag);
+}
+
+
 
   return (
     <TouchableOpacity onPress={onPress}>
@@ -22,10 +29,16 @@ var freq = itemData.frequency!=null ? itemData.frequency : '';
         <View style={styles.cardInfo}>
         <Text style={styles.cardTitle}>{itemData.uid}</Text>
 
-          <Text style={styles.cardDetails}>{itemData.displayName == null ? 'Anonymous' : itemData.displayName}</Text>
-        <Text style={styles.cardDetails}>{itemData.email}</Text>
 
-    
+        <Text style={styles.cardDetails}>{itemData.email}</Text>
+        <View style= {{alignItems: 'flex-end'}}>
+        <MaterialCommunityIcons
+          name='star'
+          size={35}
+          color={isBlacklisted == true ? "#000" : '#FF6347'}
+          onPress = {() => {handle(!isBlacklisted)}}
+        />
+</View>
         </View>
       </View>
     </TouchableOpacity>

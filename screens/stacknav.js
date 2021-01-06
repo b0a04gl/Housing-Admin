@@ -9,6 +9,10 @@ import UserCardDetails from './UserCardDetails';
 import CardDetails from './CardDetails';
 import BlackListedProps from './BlacklistedProps';
 import CardListScreen from './CardListScreen';
+import Profile from './Profile';
+import ViewAll from './ViewAll';
+import UserCardDetailsRentee from './UserCardDetailsRentee';
+import UserCardDetailsRenter from './UserCardDetailsRenter';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { AntDesign } from '@expo/vector-icons';
@@ -80,7 +84,7 @@ const MainStackNavigator = ({navigation}) => {
                 />
               </View>
             ),
-          
+
           }}
         />
 
@@ -92,7 +96,7 @@ const MainStackNavigator = ({navigation}) => {
             title: route.params.title,
             headerBackTitleVisible: false,
           headerTitleAlign: 'center',
-         
+
           })}
         />
 
@@ -107,7 +111,7 @@ const MainStackNavigator = ({navigation}) => {
             headerTransparent: true,
             headerTintColor: '#fff',
             headerTitleAlign: 'center',
-           
+
           })}
         />
 
@@ -192,7 +196,7 @@ const WishlistStackNavigator = ({navigation}) => {
             headerTransparent: true,
             headerTintColor: '#fff',
             headerTitleAlign: 'center',
-           
+
           })}
         />
 
@@ -200,6 +204,153 @@ const WishlistStackNavigator = ({navigation}) => {
     </Stack.Navigator>
   );
 }
+
+const ViewAllStackNavigator = ({navigation}) => {
+  return (
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <Stack.Screen name="ViewAll" component={ViewAll}
+      options={{
+
+               headerTitleAlign: 'center',
+               headerLeft: () => (
+                 <View style={{marginLeft: 10}}>
+                   <Icon.Button
+                     name="ios-menu"
+                     size={25}
+                     color='#fff'
+                     backgroundColor='#4263ec'
+                     onPress={() => navigation.openDrawer()}
+                   />
+                 </View>
+               ),
+               headerRight: () => (
+                 <View style={{flexDirection: 'row', marginRight: 10}}>
+                   <Icon.Button
+                     name="ios-search"
+                     size={25}
+                     color='#fff'
+                     backgroundColor='#4263ec'
+
+                   />
+
+                 </View>
+               ),
+           }}
+
+      />
+
+<Stack.Screen name="UserCardDetails" component={UserCardDetails}
+      options={{
+
+               headerTitleAlign: 'center',
+               headerLeft: () => (
+                 <View style={{marginLeft: 10}}>
+                   <Icon.Button
+                     name="ios-menu"
+                     size={25}
+                     color='#fff'
+                     backgroundColor='#4263ec'
+                     onPress={() => navigation.openDrawer()}
+                   />
+                 </View>
+               ),
+               headerRight: () => (
+                 <View style={{flexDirection: 'row', marginRight: 10}}>
+                   <Icon.Button
+                     name="ios-search"
+                     size={25}
+                     color='#fff'
+                     backgroundColor='#4263ec'
+
+                   />
+
+                 </View>
+               ),
+           }}
+
+      />
+
+      <Stack.Screen name="UserCardDetailsRentee" component={UserCardDetailsRentee}
+            options={{
+
+                     headerTitleAlign: 'center',
+                     headerLeft: () => (
+                       <View style={{marginLeft: 10}}>
+                         <Icon.Button
+                           name="ios-menu"
+                           size={25}
+                           color='#fff'
+                           backgroundColor='#4263ec'
+                           onPress={() => navigation.openDrawer()}
+                         />
+                       </View>
+                     ),
+                     headerRight: () => (
+                       <View style={{flexDirection: 'row', marginRight: 10}}>
+                         <Icon.Button
+                           name="ios-search"
+                           size={25}
+                           color='#fff'
+                           backgroundColor='#4263ec'
+
+                         />
+
+                       </View>
+                     ),
+                 }}
+
+            />
+
+            <Stack.Screen name="UserCardDetailsRenter" component={UserCardDetailsRenter}
+                  options={{
+
+                           headerTitleAlign: 'center',
+                           headerLeft: () => (
+                             <View style={{marginLeft: 10}}>
+                               <Icon.Button
+                                 name="ios-menu"
+                                 size={25}
+                                 color='#fff'
+                                 backgroundColor='#4263ec'
+                                 onPress={() => navigation.openDrawer()}
+                               />
+                             </View>
+                           ),
+                           headerRight: () => (
+                             <View style={{flexDirection: 'row', marginRight: 10}}>
+                               <Icon.Button
+                                 name="ios-search"
+                                 size={25}
+                                 color='#fff'
+                                 backgroundColor='#4263ec'
+
+                               />
+
+                             </View>
+                           ),
+                       }}
+
+                  />
+<Stack.Screen
+          name="CardDetails"
+          component={CardDetails}
+          options={({route}) => ({
+            // title: route.params.title,
+            headerBackTitleVisible: false,
+            headerTitle: false,
+            headerTransparent: true,
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+
+          })}
+        />
+
+
+    </Stack.Navigator>
+  );
+}
+
+
 
 const BlackListedPropsStackNavigator = ({navigation}) => {
   return (
@@ -222,7 +373,7 @@ const BlackListedPropsStackNavigator = ({navigation}) => {
                 />
               </View>
             ),
-           
+
         }}
         />
 
@@ -236,9 +387,72 @@ const BlackListedPropsStackNavigator = ({navigation}) => {
             headerTransparent: true,
             headerTintColor: '#fff',
             headerTitleAlign: 'center',
-           
+
           })}
         />
+
+        <Stack.Screen name="UserCardDetailsRentee" component={UserCardDetailsRentee}
+              options={{
+
+                       headerTitleAlign: 'center',
+                       headerLeft: () => (
+                         <View style={{marginLeft: 10}}>
+                           <Icon.Button
+                             name="ios-menu"
+                             size={25}
+                             color='#fff'
+                             backgroundColor='#4263ec'
+                             onPress={() => navigation.openDrawer()}
+                           />
+                         </View>
+                       ),
+                       headerRight: () => (
+                         <View style={{flexDirection: 'row', marginRight: 10}}>
+                           <Icon.Button
+                             name="ios-search"
+                             size={25}
+                             color='#fff'
+                             backgroundColor='#4263ec'
+
+                           />
+
+                         </View>
+                       ),
+                   }}
+
+              />
+
+              <Stack.Screen name="UserCardDetailsRenter" component={UserCardDetailsRenter}
+                    options={{
+
+                             headerTitleAlign: 'center',
+                             headerLeft: () => (
+                               <View style={{marginLeft: 10}}>
+                                 <Icon.Button
+                                   name="ios-menu"
+                                   size={25}
+                                   color='#fff'
+                                   backgroundColor='#4263ec'
+                                   onPress={() => navigation.openDrawer()}
+                                 />
+                               </View>
+                             ),
+                             headerRight: () => (
+                               <View style={{flexDirection: 'row', marginRight: 10}}>
+                                 <Icon.Button
+                                   name="ios-search"
+                                   size={25}
+                                   color='#fff'
+                                   backgroundColor='#4263ec'
+
+                                 />
+
+                               </View>
+                             ),
+                         }}
+
+                    />
+
     </Stack.Navigator>
   );
 }
@@ -246,7 +460,7 @@ const BlackListedPropsStackNavigator = ({navigation}) => {
 const ProfileStackNavigator = ({navigation}) => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Profile" component={HomeScreen}
+      <Stack.Screen name="Profile" component={Profile}
 
       options={{
 
@@ -279,11 +493,11 @@ const ProfileStackNavigator = ({navigation}) => {
 
       />
 
-    
+
 
     </Stack.Navigator>
   );
 }
 
 
-export { MainStackNavigator, WishlistStackNavigator,BlackListedPropsStackNavigator,ProfileStackNavigator };
+export { MainStackNavigator, WishlistStackNavigator,ViewAllStackNavigator,BlackListedPropsStackNavigator,ProfileStackNavigator };
