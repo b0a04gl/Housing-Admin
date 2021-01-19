@@ -17,7 +17,7 @@ const BottomTabNavigator = () => {
     }}
        />
 
-    
+
       <Tab.Screen name="Profile" component={ProfileStackNavigator}
       options={{
                 tabBarLabel: 'Profile',

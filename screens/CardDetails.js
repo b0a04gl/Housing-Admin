@@ -119,7 +119,19 @@ const updateStatus = (status) => {
     }
     else if(status==false)
     {
+
+      var msg = "Your property located in "+itemData.locations+" with PropID -"+itemData.propID+" has been declined due to some unavoidable reasons,So please update portofolio and re-update it";
+      // console.log(msg);
+      var title = "Declined Property";
+
+      var notification = {
+        title : title,
+        body : msg
+      };
+
       Firebase.database().ref('/properties/'+user.uid+"/"+itemData.propID+"/isVerified").set(false);
+      // Firebase.databsae().ref('users/renters/'+user.uid+'/notifications').push(msg);
+        Firebase.database().ref('/users/renters/'+user.uid+"/notifications").push(notification);
     }
     else if(status=='blacklist')
     {
@@ -171,7 +183,7 @@ const initiateWhatsApp = () => {
 var whatsAppMsg = "Hey there! I'm interested in buying/selling/leasing the property you posted,which is located in "+locations;
     // Check for perfect 10 digit length
 
-   
+
 
     if (mobileNumber.length != 10) {
       Alert.alert('Please insert correct WhatsApp number');
@@ -576,14 +588,14 @@ navigation.navigate('Home');
                            onPress={deleteProperty}
                           />
                           </View>
-                         
+
 
 
                         {
-                          type == 'Verify' ?
+                          type == 'Verify' && itemData.isVerified!=true?
 
                           <View style={styles.section}>
-                                    
+
                           <View style={{
                             flexDirection: 'row',
 
@@ -606,7 +618,7 @@ navigation.navigate('Home');
                           />
 
                           </View>
-                          
+
                           <View style={{padding:12,paddingHorizontal:1}}>
                           <FormButton
                            buttonTitle="BLACKLIST"

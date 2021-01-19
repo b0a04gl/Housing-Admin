@@ -175,7 +175,8 @@ componentDidMount() {
             for (var index = 0; index < keys2.length; index++) {
               var key = keys2[index];
 
-                x2.push(temp2[key]);
+		if(temp2[key].isVerified != 'blacklisted')
+	                x2.push(temp2[key]);
 
               // x[index]['propID'] = key;
               //console.log(x[index]);
@@ -238,7 +239,7 @@ const {user} = this.props.route.params;
             }}>
             <FlatList
                 data={this.state.myProperties}
-                renderItem={this.renderRow2}
+                renderItem={this.renderRow3}
                 refreshing={this.state.isLoading1}
                 onRefresh={this.getData}
                 keyExtractor={item => item.propID.toString()}

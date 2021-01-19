@@ -390,69 +390,6 @@ const BlackListedPropsStackNavigator = ({navigation}) => {
 
           })}
         />
-
-        <Stack.Screen name="UserCardDetailsRentee" component={UserCardDetailsRentee}
-              options={{
-
-                       headerTitleAlign: 'center',
-                       headerLeft: () => (
-                         <View style={{marginLeft: 10}}>
-                           <Icon.Button
-                             name="ios-menu"
-                             size={25}
-                             color='#fff'
-                             backgroundColor='#4263ec'
-                             onPress={() => navigation.openDrawer()}
-                           />
-                         </View>
-                       ),
-                       headerRight: () => (
-                         <View style={{flexDirection: 'row', marginRight: 10}}>
-                           <Icon.Button
-                             name="ios-search"
-                             size={25}
-                             color='#fff'
-                             backgroundColor='#4263ec'
-
-                           />
-
-                         </View>
-                       ),
-                   }}
-
-              />
-
-              <Stack.Screen name="UserCardDetailsRenter" component={UserCardDetailsRenter}
-                    options={{
-
-                             headerTitleAlign: 'center',
-                             headerLeft: () => (
-                               <View style={{marginLeft: 10}}>
-                                 <Icon.Button
-                                   name="ios-menu"
-                                   size={25}
-                                   color='#fff'
-                                   backgroundColor='#4263ec'
-                                   onPress={() => navigation.openDrawer()}
-                                 />
-                               </View>
-                             ),
-                             headerRight: () => (
-                               <View style={{flexDirection: 'row', marginRight: 10}}>
-                                 <Icon.Button
-                                   name="ios-search"
-                                   size={25}
-                                   color='#fff'
-                                   backgroundColor='#4263ec'
-
-                                 />
-
-                               </View>
-                             ),
-                         }}
-
-                    />
-
     </Stack.Navigator>
   );
 }

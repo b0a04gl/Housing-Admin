@@ -115,7 +115,12 @@ export default function R1Profile(props) {
 // const [initializing, setInitializing] = useState(user.);
 const {navigation,route} = props;
 
-const user = props.user;
+var user = props.user;
+
+if(user==null || props.user==null)
+{
+  user = Firebase.auth().currentUser;
+}
 
     return (
       <View
